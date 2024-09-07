@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <h1>Adventurer's Guild</h1>
+    ___________________________________
+
+    <h2>
+      <a href="../index.html">Home</a> 
+      <a href="../world/swordCoast.html">World</a>  
+      <a href="../campaigns/campaignsLander.html">Campaigns</a>
+      <a href="../players/players.html">Players</a>  
+      </h2>
+      _________
+<h3>Saltmarsh</h3>
+
+<a href="../campaigns/saltmarsh/journal.html">Campaign Journal</a>
+<a href="../campaigns/saltmarsh/npcs.html">NPCs</a>
+<a href="../campaigns/saltmarsh/locations.html">Locations</a>
+<br>
+<img src="../images/Saltmarsh_map.png" alt="Saltmarsh" height="500" />
+    </br> 
+    <div>
+    <h3>Saltmarsh Residents</h3>
+
+        <ul id="saltmarshResidents"></ul>
+
+        <script>
+          const listnpc = document.getElementById('saltmarshResidents'); // Changed the ID to be more descriptive
+
+          fetch('../npc.json')
+          .then(res => res.json())
+            .then(data => {
+              // Filter NPCs who reside in Saltmarsh
+              const saltmarshResidents = data.filter(npc => npc.residentOf === 'Saltmarsh');
+              
+              // Render filtered NPCs
+              saltmarshResidents.forEach(npc => {
+                listnpc.insertAdjacentHTML('beforeend', `
+                <li>
+                  <h4>${npc.name}</h4>
+                  <img src="${npc.images[0]}" alt=${npc.name} Image" height="100">
+                </li>
+                `);
+            });
+          });
+        </script> 
+        </div>  
+</body>
+</html>

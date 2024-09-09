@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <h1>Adventurer's Guild</h1>
+  
+    <nav>
+    <h2> <a href="../../index.html">Home</a> 
+        <a href="../../world/swordCoast.html">World</a> 
+      <a href="../../campaigns/campaignsLander.html">Campaigns</a>    
+      <a href="../../players/players.html">Players</a>
+      </h2>
+      </nav>
+  
+<article>  
+<h2>Waterdeep</h2>
+<img src="../../images/Waterdeep map.png" alt="Waterdeep" height="500" />
+  <p>
+</p>
+
+<ul id="waterdeepResidents"></ul>
+
+        <script>
+          const listnpc = document.getElementById('waterdeepResidents'); // Changed the ID to be more descriptive
+
+          fetch('../npc.json')
+          .then(res => res.json())
+            .then(data => {
+              // Filter NPCs who reside in Saltmarsh
+              const waterdeepResidents = data.filter(npc => npc.residentOf === 'Waterdeep');
+              
+              // Render filtered NPCs
+              waterdeepResidents.forEach(npc => {
+                listnpc.insertAdjacentHTML('beforeend', `
+                <li>
+                  <h4>${npc.name}</h4>
+                  <img src="${npc.images[0]}" alt=${npc.name} Image" height="100">
+                </li>
+                `);
+            });
+          });
+        </script> 
+</article>
+</body>
+</html>
